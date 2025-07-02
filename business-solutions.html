@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Financial Dashboard | Keerthika Services</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(-45deg, #ffecd2, #fcb69f, #a1c4fd, #c2e9fb);
+      background-size: 400% 400%;
+      animation: gradient 15s ease infinite;
+      margin: 0;
+      padding-top: 70px;
+    }
+
+    @keyframes gradient {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+    .navbar {
+      background-color: rgba(255, 255, 255, 0.9);
+      position: fixed;
+      top: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      z-index: 1000;
+    }
+
+    .navbar .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #5a2a82;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 1.5rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    h2, h3 {
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .summary, .explanation, .summary-section {
+      background: #ffffffcc;
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: left;
+    }
+
+    canvas {
+      width: 100% !important;
+      height: auto !important;
+      max-height: 400px;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin: 15px 0;
+    }
+
+    .btn-group button, .footer-btn {
+      padding: 10px 20px;
+      border: none;
+      background-color: #333;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .btn-group button:hover, .footer-btn:hover {
+      background-color: #555;
+    }
+
+    .download-section {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .download-section a {
+      display: inline-block;
+      background-color: #3f51b5;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+
+    .download-section a:hover {
+      background-color: #283593;
+    }
+
+    .footer {
+      background-color: #222;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+
+    .footer-btns {
+      text-align: center;
+      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    /* Responsive styles */
+    @media (max-width: 768px) {
+      .navbar {
+        flex-wrap: wrap;
+      }
+
+      .nav-links {
+        flex-direction: column;
+        display: none;
+        background-color: rgba(255, 255, 255, 0.95);
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        padding: 10px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .logo {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 10px;
+      }
+
+      .btn-group {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      h2, h3 {
+        font-size: 1.3rem;
+      }
+
+      .container {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="logo">Keerthi-trendz</div>
+  </nav>
+
+  <div class="container">
+    <h2>📊 Financial Sales Dashboard</h2>
+
+    <div class="btn-group">
+      <button onclick="updateChart('revenue')">Revenue</button>
+      <button onclick="updateChart('expenses')">Expenses</button>
+      <button onclick="updateChart('profit')">Profit</button>
+    </div>
+
+    <canvas id="financeChart"></canvas>
+
+    <div class="summary" id="summary">Loading dashboard summary...</div>
+
+    <div class="explanation">
+      <h3>📌 Dashboard Overview</h3>
+      <p>This financial dashboard visualizes sales data across multiple metrics — <strong>Revenue</strong>, <strong>Expenses</strong>, and <strong>Profit</strong> — for the first half of the year (Jan to Jun).</p>
+      <ul>
+        <li><strong>Revenue:</strong> Tracks business earnings in ₹ Lakhs over time, showing a rising trend.</li>
+        <li><strong>Expenses:</strong> Displays the cost outflow, helping monitor spending patterns.</li>
+        <li><strong>Profit:</strong> Calculates the difference between revenue and expenses, indicating business health.</li>
+      </ul>
+      <p>The interactive buttons allow users to switch between metrics and observe data behavior visually. A short summary is displayed to assist with interpretation.</p>
+    </div>
+
+    <div class="download-section">
+      <h3>📅 Download Power BI Report</h3>
+      <a href="https://drive.google.com/file/d/1cDB-hL_nRREokgK_Jf1N9ePxh8iiDuN5/view" target="_blank">Download .pbix File</a>
+      <p>Download & Explore the File using Power BI</p>
+    </div>
+
+    <div class="summary-section">
+      <h2>📝 Customer Review Dashboard Summary</h2>
+      <div style="text-align: center;">
+        <a href="https://ibb.co/4wS1vzwb">
+          <img src="https://i.ibb.co/gbW4qNb0/Screenshot-2025-07-01-184125.png" alt="Customer Review Dashboard" style="max-width: 100%; border-radius: 10px; margin-bottom: 20px;">
+        </a>
+      </div>
+      <p style="text-align: justify;">[...]</p>
+    </div>
+
+    <div class="footer-btns">
+      <a href="services.html"><button class="footer-btn">🔙 Back to Services</button></a>
+      <a href="book.html"><button class="footer-btn">🗓️ Book a Service</button></a>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>© 2025 Keerthika Services. All rights reserved.</p>
+  </div>
+
+  <script>
+    const ctx = document.getElementById('financeChart').getContext('2d');
+    let currentMetric = 'revenue';
+
+    const chartData = {
+      revenue: {
+        label: 'Revenue (in ₹ Lakhs)',
+        data: [15, 22, 18, 27, 30, 36],
+        summary: "Revenue has shown a steady increase, with a 20% growth in the last quarter."
+      },
+      expenses: {
+        label: 'Expenses (in ₹ Lakhs)',
+        data: [10, 12, 14, 15, 17, 20],
+        summary: "Expenses have risen moderately, reflecting scaling operations."
+      },
+      profit: {
+        label: 'Profit (in ₹ Lakhs)',
+        data: [5, 10, 4, 12, 13, 16],
+        summary: "Profit margin has improved significantly in Q2 and Q4."
+      }
+    };
+
+    let chart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+        datasets: [{
+          label: chartData.revenue.label,
+          data: chartData.revenue.data,
+          borderColor: '#3e95cd',
+          backgroundColor: 'rgba(62,149,205,0.2)',
+          fill: true,
+          tension: 0.3
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: true }
+        }
+      }
+    });
+
+    function updateChart(metric) {
+      currentMetric = metric;
+      chart.data.datasets[0].data = chartData[metric].data;
+      chart.data.datasets[0].label = chartData[metric].label;
+      chart.update();
+      document.getElementById("summary").innerText = chartData[metric].summary;
+    }
+
+    window.onload = () => updateChart('revenue');
+  </script>
+</body>
+</html>

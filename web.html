@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Web Development Services</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(-45deg, #ffecd2, #fcb69f, #a1c4fd, #c2e9fb);
+      background-size: 400% 400%;
+      animation: gradientBG 12s ease infinite, fadeInBody 1s ease-in-out;
+      margin: 0;
+      padding: 0;
+    }
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+    @keyframes fadeInBody {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    header {
+      background-color: #2c3e50;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+      animation: fadeInBody 1s ease;
+    }
+    section {
+      padding: 30px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    h2 {
+      color: #2c3e50;
+      animation: fadeInText 1.2s ease;
+    }
+    @keyframes fadeInText {
+      from { opacity: 0; transform: translateX(-20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    p {
+      font-size: 1rem;
+      color: #333;
+      line-height: 1.6;
+      animation: fadeInText 1.2s ease;
+    }
+    .btn-container {
+      text-align: center;
+      margin: 40px 0;
+      animation: fadeInText 1.5s ease;
+    }
+    .btn {
+      background-color: #3498db;
+      color: white;
+      padding: 12px 25px;
+      margin: 10px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+    }
+    .btn:hover {
+      background-color: #2980b9;
+    }
+    footer {
+      background-color: #2c3e50;
+      color: white;
+      text-align: center;
+      padding: 15px 0;
+      position: relative;
+      bottom: 0;
+      width: 100%;
+      animation: fadeInText 2s ease;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🌐 Web Development Services</h1>
+  </header>
+
+  <section>
+    <h2>Frontend Development</h2>
+    <p>Frontend development is the process of creating the visual components and interactive user interface of a website. It focuses on everything users see and interact with directly in their browser, including layouts, colors, fonts, buttons, menus, animations, and responsive designs. Skilled frontend developers use HTML, CSS, and JavaScript frameworks like React, Angular, or Vue.js to create dynamic and engaging web pages. The goal is to ensure that the website is accessible, mobile-friendly, and delivers a smooth and intuitive user experience across all devices. Performance optimization and user-centric design are key aspects of frontend development, ensuring fast loading times and seamless interactions.</p>
+
+    <h2>Backend Development</h2>
+    <p>Backend development deals with the server-side logic, database operations, and overall functionality that powers a website. It ensures that data is processed correctly, business logic is implemented, and everything functions behind the scenes. Technologies like Node.js, Python (Django/Flask), PHP, Ruby on Rails, or Java Spring Boot are commonly used for backend development. Backend developers also handle user authentication, API creation, data security, and system integrations. They work closely with frontend developers to ensure that the application is robust, scalable, and delivers data efficiently between users and the server. A strong backend is crucial for website performance, reliability, and customization.</p>
+
+    <h2>Complete Web Development</h2>
+    <p>Full web development combines both frontend and backend development to deliver end-to-end website solutions. A full-stack developer is capable of designing and developing both the client-side and server-side of a website. This comprehensive approach enables faster development, better coordination, and seamless integration between all components. Whether it’s an e-commerce platform, a blog, a company portfolio, or a custom web app, full web development ensures that everything is built from the ground up — secure, functional, and visually appealing. It covers hosting, domain integration, testing, optimization, and deployment. By offering complete web development, businesses can focus on their goals while we take care of the technical execution.</p>
+
+    <h2>Customized Website Development</h2>
+    <p>Customized website development focuses on tailoring a web solution that aligns with the unique needs, branding, and goals of a client. Instead of using off-the-shelf templates, customized websites are built from scratch — giving complete control over design, functionality, and user experience. This approach allows businesses to stand out in the competitive digital space by showcasing their identity, features, and content in a personalized way. From booking systems, payment integrations, custom dashboards, CRM modules, or interactive animations, custom-built sites are scalable and adaptable as the business grows. We ensure that every line of code serves a purpose and supports your business vision effectively.</p>
+
+    <div class="btn-container">
+      <a href="services.html" class="btn">⬅️ Back to Services</a>
+      <a href="book.html" class="btn">📅 Book a Service</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Keerthika Services. All rights reserved.</p>
+  </footer>
+</body>
+</html>

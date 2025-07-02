@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Analysis</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(-45deg, #ffecd2, #fcb69f, #a1c4fd, #c2e9fb);
+      background-size: 400% 400%;
+      animation: gradientBG 20s ease infinite, fadeInBody 1s ease-in-out;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes fadeInBody {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .navbar {
+      background-color: #333;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .navbar .logo {
+      color: #fff;
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 15px;
+      margin: 0;
+    }
+
+    .navbar ul li a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .section {
+      padding: 30px 20px;
+    }
+
+    h2, h3 {
+      color: #333;
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .row:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    .column {
+      flex: 1 1 45%;
+      box-sizing: border-box;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      animation: slideUp 1s ease;
+    }
+
+    .column:hover {
+      transform: scale(1.03);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .service-img, .grid-image {
+      width: 100%;
+      max-height: 250px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .summary {
+      font-size: 1rem;
+      color: #444;
+      padding-top: 10px;
+      text-align: justify;
+      animation: fadeInText 1.2s ease;
+    }
+
+    @keyframes fadeInText {
+      from { opacity: 0; transform: translateX(-20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    .btn {
+      display: inline-block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      text-align: center;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #388e3c;
+    }
+
+    .benefits {
+      background-color: #ffffffcc;
+      padding: 20px;
+      margin-top: 40px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      animation: fadeInText 1.5s ease;
+    }
+
+    .benefits ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .benefits li {
+      padding: 8px 0;
+      font-size: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      .row {
+        flex-direction: column !important;
+      }
+
+      .column {
+        flex: 1 1 100%;
+      }
+
+      .navbar ul {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .navbar .logo {
+        margin-bottom: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">Keerthika Services</div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="section">
+    <h2 style="text-align: center;">📊 Data Analysis</h2>
+
+    <div class="row">
+      <div class="column">
+        <img src="https://www.simplilearn.com/ice9/free_resources_article_thumb/What_is_Data_Analysis.jpg" alt="Data Analysis" class="service-img">
+      </div>
+      <div class="column">
+        <p class="summary">
+          We empower businesses and individuals to harness the full potential of their data by transforming unstructured or complex information into clear, valuable insights. Using tools like Power BI, Excel, Python, and SQL, we deliver tailored data solutions. These insights simplify complex datasets, reveal performance gaps, and support operational and strategic decisions across various sectors.
+        </p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="column">
+        <img src="https://tse2.mm.bing.net/th/id/OIP.EokmNQB4hY12Epkmz0jZxgHaE8?w=960&h=640&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Data Analyst Role" class="service-img">
+      </div>
+      <div class="column">
+        <p class="summary">
+          A data analyst collects, cleans, and interprets data to uncover meaningful trends and patterns. Their insights help solve business challenges, guide strategies, and improve efficiency. With skills in data manipulation, statistics, and visualization, analysts are key to turning raw data into smart, actionable insights that drive business success.
+        </p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="column">
+        <img src="https://cdn.educba.com/academy/wp-content/uploads/2019/04/Predictive-Modeling.jpg" alt="Prediction & Modeling" class="service-img">
+      </div>
+      <div class="column">
+        <p class="summary">
+          Predictive Modeling uses machine learning and statistical methods to forecast future outcomes. From predicting sales and churn to optimizing operations, these models identify patterns in historical data to make accurate predictions. They support proactive planning, reduce risks, and enable data-driven personalization and strategic foresight.
+        </p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="column">
+        <img src="https://www.wallstreetmojo.com/wp-content/uploads/2021/06/Trend-Analysis.jpg.webp" alt="Benefits of Data Analysis" class="service-img">
+      </div>
+      <div class="column">
+        <p class="summary">
+          These methods provide real-time insights that empower confident, informed decisions. By identifying inefficiencies and trends, they help businesses streamline processes, reduce costs, and improve performance. Combined with forecasting, they support strategic planning and future-proof business operations in a competitive landscape.
+        </p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="column">
+        <img src="https://www.walkme.com/blog/wp-content/uploads/sites/2/2019/08/1-725x460.webp" alt="Data Cleaning Workflow" class="grid-image">
+      </div>
+      <div class="column">
+        <p class="summary">
+          Data Cleaning and Validation ensure input data is accurate, consistent, and free of errors. By removing duplicates and inconsistencies, the data becomes more reliable for analysis. This foundational step improves insight accuracy and supports high-quality decision-making downstream.
+        </p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="column">
+        <img src="https://www.spscommerce.com/wp-content/uploads/2022/02/BusinessOverview-First-001.png" alt="Forecast Dashboard" class="grid-image">
+      </div>
+      <div class="column">
+        <p class="summary">
+          Forecast Dashboards offer predictive insights in real-time by tracking multiple KPIs. They allow businesses to anticipate future outcomes, spot risks, and shape strategies with clarity and confidence, all through intuitive visual data representations.
+        </p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="column">
+        <img src="https://media.istockphoto.com/vectors/signal-analysis-line-icon-vector-id1141951393?k=20&m=1141951393&s=612x612&w=0&h=SPZ7Tf1nczud6kFvgoC9xgR4PnKbyhysYvmRz8FCUp0=" alt="Data Anomaly Analysis" class="grid-image">
+      </div>
+      <div class="column">
+        <p class="summary">
+          Anomaly Detection identifies unusual patterns in data, flagging potential issues or hidden opportunities. Early detection helps teams respond quickly, find root causes, and maintain operational integrity through data-driven alerts and monitoring.
+        </p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="column">
+        <img src="https://img.freepik.com/premium-vector/validation-icon-simple-element-illustration-validation-concept-symbol-design-from-analytics-research-collection-can-be-used-web-mobile_159242-12222.jpg" alt="Data Validation Process" class="grid-image">
+      </div>
+      <div class="column">
+        <p class="summary">
+          Validation Processes ensure model accuracy and reduce risks through strict consistency checks. By verifying data quality and aligning with standards, validation builds trust in insights, prevents errors, and enhances the reliability of analytical results used in decision-making.
+        </p>
+      </div>
+    </div>
+
+    <div class="benefits">
+      <h3 style="text-align: center;">✨ Key Benefits of Our Data Analysis Services</h3>
+      <ul>
+        <li>✅ Improved operational efficiency</li>
+        <li>✅ Smarter strategic decisions</li>
+        <li>✅ Real-time performance tracking</li>
+        <li>✅ Customer behavior analysis</li>
+        <li>✅ Enhanced business forecasting</li>
+      </ul>
+    </div>
+
+    <div style="text-align: center;">
+      <a class="btn" href="services.html">⬅️ Back to Services</a>
+       <a href="book.html" class="btn">📘 Book a Project</a>
+    </div>
+  </section>
+</body>
+</html>

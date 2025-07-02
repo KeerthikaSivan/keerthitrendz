@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Keerthika Services | Services</title>
+  <style>
+    /* Background Animation */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: linear-gradient(-45deg, #ffecd2, #fcb69f, #a1c4fd, #c2e9fb);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: #333;
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .navbar .logo {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 15px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar ul li a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .navbar ul li a:hover {
+      color: #a1c4fd;
+    }
+
+    .navbar input[type="text"] {
+      padding: 6px 10px;
+      border-radius: 4px;
+      border: none;
+      margin-top: 10px;
+    }
+
+    /* Section */
+    .section {
+      padding: 40px 20px;
+      text-align: center;
+      flex-grow: 1;
+    }
+
+    .section h2 {
+      color: #222;
+      margin-bottom: 40px;
+    }
+
+    /* Cards */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background-color: #ffffffcc;
+      padding: 30px 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+      transition: transform 0.4s ease, background-color 0.4s ease;
+      text-align: left;
+      text-decoration: none;
+      color: #000;
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      background-color: #d0e8ff;
+    }
+
+    .card h3 {
+      margin: 0 0 12px;
+      font-size: 1.4rem;
+    }
+
+    .card p {
+      margin: 0;
+      font-size: 1.05rem;
+      line-height: 1.5;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #333;
+      color: white;
+    }
+
+    /* Responsive Navbar */
+    @media (max-width: 600px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .navbar ul {
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .navbar input[type="text"] {
+        width: 100%;
+        margin-top: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">Keerthika Services</div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <input type="text" placeholder="Search...">
+  </nav>
+
+  <!-- Services Section -->
+  <section class="section" id="services">
+    <h2>Our Services</h2>
+    <div class="card-grid">
+      <a class="card" href="data analyst.html">
+        <h3>📊 Data Analysis</h3>
+        <p>Unlock insights from your data using Power BI, Excel, Python, and more.</p>
+      </a>
+      <a class="card" href="business.html">
+        <h3>📈 Business Analysis</h3>
+        <p>Identify growth strategies, risks, and improve decision-making.</p>
+      </a>
+      <a class="card" href="web.html">
+        <h3>💻 Web Development</h3>
+        <p>Modern, responsive websites using HTML, CSS, JS, Flask & more.</p>
+      </a>
+      <a class="card" href="workshop.html">
+        <h3>🎓 Workshops</h3>
+        <p>Customized sessions on AI, Python, Power BI, and soft skills.</p>
+      </a>
+      <a class="card" href="clg.html">
+        <h3>📚 College Projects</h3>
+        <p>End-to-end project support with ML/NLP, design, and documentation.</p>
+      </a>
+      <a class="card" href="python.html">
+        <h3>🐍 Python</h3>
+        <p>Hands-on Python training from basics to advanced.</p>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Keerthika Services | Empowering Skills & Careers</p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Book a Service</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(-45deg, #fdfbfb, #ebedee, #d3cce3, #e9e4f0);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite, fadeInBody 1s ease-in-out;
+      margin: 0;
+      padding: 0;
+    }
+
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+    @keyframes fadeInBody {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    header {
+      background-color: #1e1e2f;
+      color: #fff;
+      padding: 25px;
+      text-align: center;
+    }
+
+    section {
+      padding: 40px;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    h2 {
+      color: #1e1e2f;
+      text-align: center;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      animation: fadeInBody 1.2s ease;
+    }
+
+    input, select, textarea {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    button {
+      background-color: #4caf50;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #2e7d32;
+    }
+
+    .btn-container {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .btn {
+      background-color: #1e1e2f;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+      margin: 10px;
+      display: inline-block;
+    }
+
+    footer {
+      background-color: #1e1e2f;
+      color: white;
+      text-align: center;
+      padding: 15px 0;
+      margin-top: 40px;
+    }
+
+    .spinner {
+      display: none;
+      margin: auto;
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #4caf50;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .status-message {
+      text-align: center;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>📅 Book a Service</h1>
+  </header>
+
+  <section>
+    <h2>Complete the Form to Book Your Service</h2>
+    <form id="bookServiceForm">
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="email" name="email" placeholder="Your Email" required />
+      <select name="service" required>
+        <option value="" disabled selected>Select a service</option>
+        <option value="Web Development">Web Development</option>
+        <option value="Data Analysis">Data Analysis</option>
+        <option value="AI Tools">AI Tools</option>
+        <option value="Python Projects">Python Projects</option>
+        <option value="College Projects">College Projects</option>
+        <option value="Workshops">Workshops</option>
+      </select>
+      <textarea name="details" placeholder="Project / Service Details" rows="5" required></textarea>
+      <button type="submit">Submit Booking</button>
+    </form>
+
+    <div class="spinner" id="spinner"></div>
+    <p class="status-message" id="statusMsg"></p>
+
+    <div class="btn-container">
+      <a href="services.html" class="btn">⬅️ Back to Services</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Keerthika Services. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const form = document.getElementById('bookServiceForm');
+    const spinner = document.getElementById('spinner');
+    const statusMsg = document.getElementById('statusMsg');
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      statusMsg.textContent = '';
+      spinner.style.display = 'block';
+
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+
+      console.log("🧾 Form data:", data); // ✅ DEBUG LOG HERE
+
+      try {
+        const response = await fetch('http://localhost:3000/book-service', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+        spinner.style.display = 'none';
+        statusMsg.textContent = result.message;
+        statusMsg.style.color = 'green';
+        form.reset();
+      } catch (error) {
+        spinner.style.display = 'none';
+        statusMsg.textContent = '❌ Failed to submit. Please try again.';
+        statusMsg.style.color = 'red';
+        console.error(error);
+      }
+    });
+  </script>
+</body>
+</html>
