@@ -1,27 +1,25 @@
-// server.js
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const path = require('path');
 const bodyParser = require('body-parser');
+require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // ✅ Middleware
-app.use(cors());
+app.use(cors({ origin: '*' }));
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, 'public'))); // Serve static files
 
 // ✅ MongoDB Connection
-mongoose.connect(
-  process.env.MONGODB_URI || 'mongodb+srv://keerthika:mithunkeerthi_17@cluster0.aiixtks.mongodb.net/serviceBookingsDB?retryWrites=true&w=majority',
-  { useNewUrlParser: true, useUnifiedTopology: true }
-)
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
 .then(() => console.log("✅ Connected to MongoDB"))
 .catch((err) => console.error("❌ MongoDB connection error:", err));
 
-// ✅ Mongoose Schema
+// ✅ Schema & Model
 const bookingSchema = new mongoose.Schema({
   name: String,
   email: String,
@@ -31,24 +29,25 @@ const bookingSchema = new mongoose.Schema({
 });
 const Booking = mongoose.model('Booking', bookingSchema);
 
-// ✅ Serve HTML page
+// ✅ Test Route
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'book.html'));
+  res.send('🚀 Booking backend is running');
 });
 
-// ✅ Handle form POST
+// ✅ Form Submission Route
 app.post('/book-service', async (req, res) => {
   try {
-    const newBooking = new Booking(req.body);
-    await newBooking.save();
-    res.json({ message: '✅ Booking submitted successfully!' });
-  } catch (err) {
-    console.error("❌ Error saving to MongoDB:", err);
-    res.status(500).json({ message: '❌ Failed to save booking.' });
+    const booking = new Booking(req.body);
+    await booking.save();
+    console.log("📩 Booking received:", req.body);
+    res.status(200).json({ message: '✅ Booking submitted successfully!' });
+  } catch (error) {
+    console.error("❌ Error:", error);
+    res.status(500).json({ message: '❌ Failed to submit booking.' });
   }
 });
 
-// ✅ Start the server
+// ✅ Start Server
 app.listen(PORT, () => {
   console.log(`🚀 Server running at http://localhost:${PORT}`);
 });
