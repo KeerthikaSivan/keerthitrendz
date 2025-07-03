@@ -5,6 +5,152 @@
   <title>Keerthika Services</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #6c5ce7;
+      padding: 1rem 2rem;
+      color: white;
+    }
+
+    .navbar .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .theme-toggle {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      color: white;
+      font-size: 1.5rem;
+      border: none;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 2rem 1rem;
+      background: linear-gradient(to right, #fce3ec, #ffe3f0);
+    }
+
+    .hero-content {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hero-content h1 {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .floating-text {
+      font-size: 1.8rem;
+      color: #6c5ce7;
+      animation: floatText 3s ease-in-out infinite;
+      margin-bottom: 1.5rem;
+    }
+
+    @keyframes floatText {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .hero-content img {
+      max-width: 300px;
+      margin-bottom: 1.5rem;
+    }
+
+    .summary-text {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #444;
+      margin: 1.5rem auto 2rem;
+      text-align: justify;
+      max-width: 800px;
+      padding: 0 1rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background: #6c5ce7;
+      color: white;
+      text-decoration: none;
+      border-radius: 25px;
+      font-weight: bold;
+      margin-top: 1rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #6c5ce7;
+    }
+
+    .dark-mode {
+      background: #121212;
+      color: white;
+    }
+
+    .dark-mode .navbar, .dark-mode .btn {
+      background: #2d2d2d;
+    }
+
+    .dark-mode .nav-links a {
+      color: #fff;
+    }
+
+    .dark-mode footer {
+      background: #1a1a1a;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background: #6c5ce7;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        padding: 1rem;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -17,15 +163,23 @@
       <li><a href="services.html">Services</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
-    <!-- Theme Toggle -->
     <button id="toggle-theme" class="theme-toggle">🌙</button>
   </nav>
 
   <!-- Hero Section -->
   <header class="hero">
     <div class="hero-content">
+      <div class="floating-text">👋 Hi, Welcome to Keerthika Services</div>
+
+      <img src="https://cdnl.iconscout.com/lottie/premium/thumb/woman-working-on-desk-5720063-4798187.gif" alt="Working Animation" />
+
       <h1>Welcome to <span class="brand">Keerthika Services</span></h1>
-      <p>Your one-stop solution for tech, learning, and career success</p>
+
+      <p class="summary-text">
+        Keerthika Services is your one-stop solution for modern digital needs, designed to support students, entrepreneurs, and professionals. We offer a variety of services including web development to build your personal or business website, data analysis with easy-to-understand dashboards, and smart AI tools to make your tasks faster and easier. Our platform also provides hands-on project support, expert-led workshops, and career guidance to help you grow. We make your data more accessible with multi-language reports and voice summaries so you can understand your insights in your own language. At Keerthika Services, we believe in making technology simple and useful for everyone. Let’s work together to turn your ideas into reality and shape a better future.
+
+      </p>
+
       <a href="services.html" class="btn">Explore Services</a>
     </div>
   </header>
