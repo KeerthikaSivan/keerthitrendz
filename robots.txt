@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://keerthitrendzz.netlify.app/sitemap.xml
