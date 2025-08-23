@@ -10,6 +10,7 @@ const PORT = process.env.PORT || 3000;
 // ✅ Middleware
 app.use(cors({ origin: '*' }));
 app.use(bodyParser.json());
+app.use(express.static("public")); // serve frontend files
 
 // ✅ MongoDB Connection
 mongoose.connect(process.env.MONGO_URI, {
@@ -30,7 +31,7 @@ const bookingSchema = new mongoose.Schema({
 const Booking = mongoose.model('Booking', bookingSchema);
 
 // ✅ Test Route
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
   res.send('🚀 Booking backend is running');
 });
 
