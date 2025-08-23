@@ -1,85 +1,53 @@
-// ✅ Navbar toggle
-document.querySelector('.burger').addEventListener('click', () => {
-  document.querySelector('.nav-links').classList.toggle('active');
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
+const bodyParser = require('body-parser');
+require('dotenv').config();
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+// ✅ Middleware
+app.use(cors({ origin: '*' }));
+app.use(bodyParser.json());
+
+// ✅ MongoDB Connection
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(() => console.log("✅ Connected to MongoDB"))
+.catch((err) => console.error("❌ MongoDB connection error:", err));
+
+// ✅ Schema & Model
+const bookingSchema = new mongoose.Schema({
+  name: String,
+  email: String,
+  service: String,
+  details: String,
+  createdAt: { type: Date, default: Date.now }
+});
+const Booking = mongoose.model('Booking', bookingSchema);
+
+// ✅ Test Route
+app.get('/', (req, res) => {
+  res.send('🚀 Booking backend is running');
 });
 
-// ✅ Booking form submission
-const bookingForm = document.getElementById('bookingForm');
-const responseMessage = document.getElementById('responseMessage');
-
-bookingForm.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const formData = {
-    name: bookingForm.name.value,
-    email: bookingForm.email.value,
-    service: bookingForm.service.value,
-    details: bookingForm.details.value
-  };
-
+// ✅ Form Submission Route
+app.post('/book-service', async (req, res) => {
   try {
-    const res = await fetch('http://localhost:3000/book-service', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData)
-    });
-    const data = await res.json();
-    responseMessage.textContent = data.message;
-    responseMessage.style.color = "lightgreen";
-    bookingForm.reset();
+    const booking = new Booking(req.body);
+    await booking.save();
+    console.log("📩 Booking received:", req.body);
+    res.status(200).json({ message: '✅ Booking submitted successfully!' });
   } catch (error) {
-    console.error("Error:", error);
-    responseMessage.textContent = "❌ Failed to submit booking.";
-    responseMessage.style.color = "red";
+    console.error("❌ Error:", error);
+    res.status(500).json({ message: '❌ Failed to submit booking.' });
   }
 });
 
-// ✅ 3D Background using Three.js
-const canvas = document.querySelector('.webgl');
-const scene = new THREE.Scene();
-
-// Geometry
-const geometry = new THREE.BufferGeometry();
-const vertices = [];
-for (let i = 0; i < 5000; i++) {
-  vertices.push((Math.random() - 0.5) * 10);
-  vertices.push((Math.random() - 0.5) * 10);
-  vertices.push((Math.random() - 0.5) * 10);
-}
-geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
-
-// Material
-const material = new THREE.PointsMaterial({
-  color: 0xffffff,
-  size: 0.05,
-  transparent: true,
-  opacity: 0.8
-});
-
-// Points
-const particles = new THREE.Points(geometry, material);
-scene.add(particles);
-
-// Camera
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 100);
-camera.position.z = 5;
-scene.add(camera);
-
-// Renderer
-const renderer = new THREE.WebGLRenderer({ canvas: canvas });
-renderer.setSize(window.innerWidth, window.innerHeight);
-
-// Animate
-function animate() {
-  requestAnimationFrame(animate);
-  particles.rotation.y += 0.0008;
-  particles.rotation.x += 0.0005;
-  renderer.render(scene, camera);
-}
-animate();
-
-// Resize
-window.addEventListener('resize', () => {
-  camera.aspect = window.innerWidth / window.innerHeight;
-  camera.updateProjectionMatrix();
-  renderer.setSize(window.innerWidth, window.innerHeight);
+// ✅ Start Server
+app.listen(PORT, () => {
+  console.log(`🚀 Server running at http://localhost:${PORT}`);
 });
