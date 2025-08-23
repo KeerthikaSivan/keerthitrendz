@@ -1,54 +1,72 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
-const bodyParser = require('body-parser');
-require('dotenv').config();
-
-const app = express();
-const PORT = process.env.PORT || 3000;
-
-// ✅ Middleware
-app.use(cors({ origin: '*' }));
-app.use(bodyParser.json());
-app.use(express.static("public")); // serve frontend files
-
-// ✅ MongoDB Connection
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
-.then(() => console.log("✅ Connected to MongoDB"))
-.catch((err) => console.error("❌ MongoDB connection error:", err));
-
-// ✅ Schema & Model
-const bookingSchema = new mongoose.Schema({
-  name: String,
-  email: String,
-  service: String,
-  details: String,
-  createdAt: { type: Date, default: Date.now }
-});
-const Booking = mongoose.model('Booking', bookingSchema);
-
-// ✅ Test Route
-app.get('/api', (req, res) => {
-  res.send('🚀 Booking backend is running');
+// ✅ Navbar toggle
+const hamburger = document.querySelector('.hamburger');
+const navLinks = document.querySelector('.nav-links');
+hamburger.addEventListener('click', () => {
+  navLinks.classList.toggle('active');
 });
 
-// ✅ Form Submission Route
-app.post('/book-service', async (req, res) => {
+// ✅ Booking Form Submission
+const form = document.getElementById("bookingForm");
+const responseMsg = document.getElementById("responseMsg");
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const formData = {
+    name: form.name.value,
+    email: form.email.value,
+    service: form.service.value,
+    details: form.details.value
+  };
+
   try {
-    const booking = new Booking(req.body);
-    await booking.save();
-    console.log("📩 Booking received:", req.body);
-    res.status(200).json({ message: '✅ Booking submitted successfully!' });
-  } catch (error) {
-    console.error("❌ Error:", error);
-    res.status(500).json({ message: '❌ Failed to submit booking.' });
+    const res = await fetch("http://localhost:3000/book-service", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData)
+    });
+
+    const data = await res.json();
+    responseMsg.textContent = data.message;
+    responseMsg.style.color = "lightgreen";
+    form.reset();
+  } catch (err) {
+    responseMsg.textContent = "❌ Failed to connect to server.";
+    responseMsg.style.color = "red";
   }
 });
 
-// ✅ Start Server
-app.listen(PORT, () => {
-  console.log(`🚀 Server running at http://localhost:${PORT}`);
+// ✅ Three.js 3D Background
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer({ canvas: document.querySelector('.webgl'), alpha: true });
+renderer.setSize(window.innerWidth, window.innerHeight);
+
+// Particles
+const geometry = new THREE.BufferGeometry();
+const particlesCount = 5000;
+const posArray = new Float32Array(particlesCount * 3);
+for (let i = 0; i < particlesCount * 3; i++) {
+  posArray[i] = (Math.random() - 0.5) * 10;
+}
+geometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+const material = new THREE.PointsMaterial({ color: 0xffffff, size: 0.02, transparent: true, opacity: 0.8 });
+const particles = new THREE.Points(geometry, material);
+scene.add(particles);
+camera.position.z = 5;
+
+// Animation
+function animate() {
+  requestAnimationFrame(animate);
+  particles.rotation.y += 0.0008;
+  particles.rotation.x += 0.0005;
+  particles.position.y = Math.sin(Date.now() * 0.0005) * 0.2;
+  renderer.render(scene, camera);
+}
+animate();
+
+window.addEventListener('resize', () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
 });
