@@ -1,113 +1,171 @@
-body {
+/* Reset + Transitions */
+* {
   margin: 0;
-  font-family: Arial, sans-serif;
-  color: white;
-  background: #1a1a2e;
-  overflow-x: hidden;
+  padding: 0;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
 }
 
-header {
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(-45deg, #fdfbfb, #ebedee, #d3cce3, #e9e4f0);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+  color: #222;
+  padding-top: 60px;
+}
+
+.dark-mode {
+  background: linear-gradient(-45deg, #2b2b2b, #1e1e1e, #3c3c3c, #2e2e2e);
+  color: #f1f1f1;
+}
+
+/* Navbar */
+.navbar {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 15px 20px;
   position: fixed;
   top: 0;
   width: 100%;
-  background: rgba(26, 26, 46, 0.9);
-  padding: 1rem;
-  z-index: 10;
-}
-
-nav {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  z-index: 999;
 }
 
-.logo { font-size: 1.5rem; }
+.dark-mode .navbar {
+  background-color: rgba(34, 34, 34, 0.95);
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #5a2a82;
+}
 
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 1rem;
+  gap: 20px;
 }
 
 .nav-links li a {
-  color: white;
   text-decoration: none;
+  color: inherit;
+  font-weight: 500;
 }
 
-.burger {
-  display: none;
-  font-size: 2rem;
+/* Theme toggle button */
+.theme-toggle {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
   cursor: pointer;
+  margin-left: 20px;
 }
 
-/* Sections */
-section {
-  padding: 100px 20px;
+/* Hamburger Menu (Mobile) */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+/* Hero Section */
+.hero {
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
   text-align: center;
 }
 
-.hero {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.hero-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+
+.hero-content .brand {
+  color: #944bbb;
+}
+
+.hero-content p {
+  font-size: 1.1rem;
+  margin-bottom: 25px;
 }
 
 .btn {
-  background: #6c5ce7;
+  background-color: #944bbb;
   color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
-  text-decoration: none;
-  display: inline-block;
-}
-
-/* Booking form */
-form {
-  display: flex;
-  flex-direction: column;
-  max-width: 400px;
-  margin: auto;
-  gap: 10px;
-}
-
-input, select, textarea, button {
-  padding: 10px;
-  border-radius: 5px;
+  padding: 12px 24px;
   border: none;
+  border-radius: 25px;
+  text-decoration: none;
+  font-size: 1rem;
 }
 
-button {
-  background: #00cec9;
-  cursor: pointer;
+.btn:hover {
+  background-color: #6e36a4;
 }
 
-/* 3D Canvas */
-canvas.webgl {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: -1;
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.6);
+  margin-top: 50px;
 }
 
-/* Mobile */
+.dark-mode footer {
+  background-color: rgba(34, 34, 34, 0.6);
+}
+
+/* Gradient Animation */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Responsive Styles */
 @media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
   .nav-links {
-    display: none;
-    flex-direction: column;
-    background: rgba(108,92,231,0.95);
     position: absolute;
     top: 60px;
-    right: 0;
-    padding: 1rem;
+    right: 20px;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 10px;
+    flex-direction: column;
+    gap: 10px;
+    display: none;
     border-radius: 10px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
   }
+
+  .dark-mode .nav-links {
+    background-color: rgba(34, 34, 34, 0.95);
+  }
+
   .nav-links.active {
     display: flex;
   }
-  .burger {
-    display: block;
+
+  .nav-links li {
+    text-align: center;
+  }
+
+  .theme-toggle {
+    position: absolute;
+    top: 15px;
+    right: 50px;
   }
 }
