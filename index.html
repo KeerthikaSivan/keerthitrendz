@@ -3,94 +3,76 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Keerthi Trendzz | Portfolio</title>
+  <title>Keerthi Trendzz - Portfolio</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- ✅ 3D Canvas Background -->
-  <canvas class="webgl"></canvas>
-
-  <!-- ✅ Navbar -->
+  <!-- Navbar -->
   <header>
-    <nav class="navbar">
-      <div class="logo">Keerthi Trendzz</div>
+    <nav>
+      <h1 class="logo">Keerthi Trendzz</h1>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
         <li><a href="#services">Services</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
-      <div class="hamburger">☰</div>
+      <div class="burger">☰</div>
     </nav>
   </header>
 
-  <!-- ✅ Hero Section -->
+  <!-- Hero -->
   <section class="hero">
-    <div class="hero-content">
-      <h1>Hi, I'm <span>Keerthika</span></h1>
-      <p>AI Developer | Web Designer | Data Analyst</p>
-      <a href="#contact" class="btn">Book My Service</a>
-    </div>
+    <h2>Welcome to My 3D Portfolio</h2>
+    <p>Showcasing skills, creativity, and projects with interactive design.</p>
+    <a href="#services" class="btn">Explore Services</a>
   </section>
 
-  <!-- ✅ About Section -->
-  <section id="about" class="about">
+  <!-- About -->
+  <section id="about">
     <h2>About Me</h2>
-    <p>
-      I'm an AI and Web Developer passionate about building smart applications,
-      dashboards, and creative designs. With hands-on experience in
-      <b>Data Analytics</b>, <b>Machine Learning</b>, and <b>Full Stack Development</b>,
-      I bring ideas to life.
-    </p>
+    <p>I’m Keerthika, passionate about AI, web development, and data analytics.</p>
   </section>
 
-  <!-- ✅ Services Section -->
-  <section id="services" class="services">
+  <!-- Services -->
+  <section id="services">
     <h2>Services</h2>
-    <div class="service-cards">
-      <div class="card">Web Development</div>
-      <div class="card">AI & NLP Reports</div>
-      <div class="card">Data Analysis</div>
-      <div class="card">Workshops & Training</div>
-    </div>
-  </section>
-
-  <!-- ✅ Projects Section -->
-  <section id="projects" class="projects">
-    <h2>Projects</h2>
     <ul>
-      <li>💖 Heart Disease Diagnostic System</li>
-      <li>📊 Automated Financial Sales Dashboard</li>
-      <li>🩸 BloodLink - Blood Donation Platform</li>
-      <li>🌍 Zero Hunger - Food Distribution Platform</li>
+      <li>Web Development</li>
+      <li>Data Analysis</li>
+      <li>AI & NLP Projects</li>
     </ul>
   </section>
 
-  <!-- ✅ Contact / Booking Section -->
-  <section id="contact" class="contact">
-    <h2>Book My Service</h2>
+  <!-- Booking Form -->
+  <section id="book">
+    <h2>Book a Service</h2>
     <form id="bookingForm">
       <input type="text" name="name" placeholder="Your Name" required>
       <input type="email" name="email" placeholder="Your Email" required>
       <select name="service" required>
         <option value="">Select Service</option>
         <option value="Web Development">Web Development</option>
-        <option value="AI & NLP Reports">AI & NLP Reports</option>
         <option value="Data Analysis">Data Analysis</option>
-        <option value="Workshops & Training">Workshops & Training</option>
+        <option value="AI Project">AI Project</option>
       </select>
-      <textarea name="details" placeholder="Project Details..." required></textarea>
+      <textarea name="details" placeholder="Project Details"></textarea>
       <button type="submit" class="btn">Submit</button>
     </form>
-    <p id="responseMsg"></p>
+    <p id="responseMessage"></p>
   </section>
 
-  <footer>
-    <p>© 2025 Keerthi Trendzz | All Rights Reserved</p>
-  </footer>
+  <!-- Contact -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Email: keerthi@example.com</p>
+  </section>
 
-  <!-- ✅ Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- Canvas for 3D -->
+  <canvas class="webgl"></canvas>
+
+  <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
